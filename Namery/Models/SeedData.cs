@@ -24,28 +24,24 @@ namespace MvcPerson.Models
                 context.Person.AddRange(
                     new Person
                     {
-                        Id = 1,
                         Name = "Andrew Dina",
                         Notes = "I am you!"
                     },
 
                     new Person
                     {
-                        Id = 1,
                         Name = "Lisa Dina",
                         Notes = "Wife"
                     },
 
                     new Person
                     {
-                        Id = 1,
                         Name = "Andrea Dina",
                         Notes = "Daughter"
                     },
 
                     new Person
                     {
-                        Id = 1,
                         Name = "Timothy Dina",
                         Notes = "Son"
                     }
