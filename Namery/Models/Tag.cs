@@ -3,9 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Namery.Models
 {
-    public class Person
+    public class Tag
     {
-        public int PersonId { get; set; }
+        [Key]
+        public int TagId { get; set; }
         public string Name { get; set; }
         public string Notes { get; set; }
     }

@@ -9,22 +9,22 @@ using Namery.Models;
 
 namespace Namery.Controllers
 {
-    public class NameryController : Controller
+    public class TagController : Controller
     {
         private readonly NameryContext _context;
 
-        public NameryController(NameryContext context)
+        public TagController(NameryContext context)
         {
             _context = context;
         }
 
-        // GET: Namery
+        // GET: Tag
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Person.ToListAsync());
+            return View(await _context.Tag.ToListAsync());
         }
 
-        // GET: Namery/Details/5
+        // GET: Tag/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace Namery.Controllers
                 return NotFound();
             }
 
-            var person = await _context.Person
-                .FirstOrDefaultAsync(m => m.PersonId == id);
-            if (person == null)
+            var tag = await _context.Tag
+                .FirstOrDefaultAsync(m => m.TagId == id);
+            if (tag == null)
             {
                 return NotFound();
             }
 
-            return View(person);
+            return View(tag);
         }
 
-        // GET: Namery/Create
+        // GET: Tag/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Namery/Create
+        // POST: Tag/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Notes")] Person person)
+        public async Task<IActionResult> Create([Bind("TagId,Name,Notes")] Tag tag)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(person);
+                _context.Add(tag);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(person);
+            return View(tag);
         }
 
-        // GET: Namery/Edit/5
+        // GET: Tag/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace Namery.Controllers
                 return NotFound();
             }
 
-            var person = await _context.Person.FindAsync(id);
-            if (person == null)
+            var tag = await _context.Tag.FindAsync(id);
+            if (tag == null)
             {
                 return NotFound();
             }
-            return View(person);
+            return View(tag);
         }
 
-        // POST: Namery/Edit/5
+        // POST: Tag/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Notes")] Person person)
+        public async Task<IActionResult> Edit(int id, [Bind("TagId,Name,Notes")] Tag tag)
         {
-            if (id != person.PersonId)
+            if (id != tag.TagId)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace Namery.Controllers
             {
                 try
                 {
-                    _context.Update(person);
+                    _context.Update(tag);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PersonExists(person.PersonId))
+                    if (!TagExists(tag.TagId))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace Namery.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(person);
+            return View(tag);
         }
 
-        // GET: Namery/Delete/5
+        // GET: Tag/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace Namery.Controllers
                 return NotFound();
             }
 
-            var person = await _context.Person
-                .FirstOrDefaultAsync(m => m.PersonId == id);
-            if (person == null)
+            var tag = await _context.Tag
+                .FirstOrDefaultAsync(m => m.TagId == id);
+            if (tag == null)
             {
                 return NotFound();
             }
 
-            return View(person);
+            return View(tag);
         }
 
-        // POST: Namery/Delete/5
+        // POST: Tag/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var person = await _context.Person.FindAsync(id);
-            _context.Person.Remove(person);
+            var tag = await _context.Tag.FindAsync(id);
+            _context.Tag.Remove(tag);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PersonExists(int id)
+        private bool TagExists(int id)
         {
-            return _context.Person.Any(e => e.PersonId == id);
+            return _context.Tag.Any(e => e.TagId == id);
         }
     }
 }

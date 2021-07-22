@@ -1,4 +1,4 @@
-@model IEnumerable<Namery.Models.Person>
+@model IEnumerable<Namery.Models.Tag>
 
 @{
     ViewData["Title"] = "Index";
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PersonId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PersonId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PersonId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TagId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TagId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TagId">Delete</a>
             </td>
         </tr>
 }
