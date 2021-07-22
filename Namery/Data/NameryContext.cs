@@ -12,7 +12,15 @@ using Namery.Models;
         {
         }
 
-        public DbSet<Namery.Models.Person> Person { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<PersonTag>().HasKey(pt => new { pt.PersonId, pt.TagId });
+    }
+
+
+    public DbSet<Namery.Models.Person> Person { get; set; }
 
         public DbSet<Namery.Models.Tag> Tag { get; set; }
+
+        public DbSet<PersonTag> PersonTags { get; set; }
     }
